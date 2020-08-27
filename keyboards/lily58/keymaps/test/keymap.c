@@ -6,8 +6,6 @@
 //Following line allows macro to read current RGB settings
 extern rgblight_config_t rgblight_config;
 #endif
-bool is_alt_tab_active = false;
-uint16_t alt_tab_timer = 0;
 extern uint8_t is_master;
 
 #define _QWERTY 0
@@ -162,12 +160,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
 }
 
-void matrix_scan_user(void) {
-  if (is_alt_tab_active && timer_elapsed(alt_tab_timer) > 1250) {
-      unregister_code(KC_LALT);
-      is_alt_tab_active = false;
-    }
-}
 
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
